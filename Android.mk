@@ -16,31 +16,31 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := org.slim.framework
+LOCAL_MODULE := org.liquid.framework
 
 LOCAL_SRC_FILES := $(call all-java-files-under,src)
 
-slim_platform_res := APPS/org.slim.framework-res_intermediates/src
+liquid_platform_res := APPS/org.liquid.framework-res_intermediates/src
 
 LOCAL_INTERMEDIATE_SOURCES := \
-    $(slim_platform_res)/org/slim/framework/R.java \
-    $(slim_platform_res)/org/slim/framework/internal/R.java \
-    $(slim_platform_res)/org/slim/framework/Manifest.java
+    $(liquid_platform_res)/org/liquid/framework/R.java \
+    $(liquid_platform_res)/org/liquid/framework/internal/R.java \
+    $(liquid_platform_res)/org/liquid/framework/Manifest.java
 
 include $(BUILD_JAVA_LIBRARY)
-slim_framework_module := $(LOCAL_INSTALLED_MODULE)
+liquid_framework_module := $(LOCAL_INSTALLED_MODULE)
 
 # Make sure that R.java and Manifest.java are built before we build
 # the source for this library.
-slim_framework_res_R_stamp := \
-    $(call intermediates-dir-for,APPS,org.slim.framework-res,,COMMON)/src/R.stamp
-$(full_classes_compiled_jar): $(slim_framework_res_R_stamp)
-$(built_dex_intermediate): $(slim_framework_res_R_stamp)
+liquid_framework_res_R_stamp := \
+    $(call intermediates-dir-for,APPS,org.liquid.framework-res,,COMMON)/src/R.stamp
+$(full_classes_compiled_jar): $(liquid_framework_res_R_stamp)
+$(built_dex_intermediate): $(liquid_framework_res_R_stamp)
 
-$(slim_framework_module): | $(dir $(slim_framework_module))org.slim.framework-res.apk
+$(liquid_framework_module): | $(dir $(liquid_framework_module))org.liquid.framework-res.apk
 
-slim_framework_built := $(call java-lib-deps, org.slim.framework)
+liquid_framework_built := $(call java-lib-deps, org.liquid.framework)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-include $(LOCAL_PATH)/../packages/SlimSettingsProvider/Android.mk
+include $(LOCAL_PATH)/../packages/LiquidSettingsProvider/Android.mk
